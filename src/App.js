@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import {Route, Routes} from 'react-router-dom'
 
-function App() {
+import './App.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
+import Todo from './components/Todoapp'
+import Register from './components/register/index.js'
+import Login from './components/login'
+import Profile from './components/profile'
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route exact path="/" element={<Register />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/todo" element={<Todo />} />
+      <Route exact path="/profile" element={<Profile/>} />
+    </Routes>
+  )
 }
 
-export default App;
+export default App
