@@ -23,11 +23,15 @@ const Login = () => {
   const [cond, setCond] = useState(false)
   const navigate = useNavigate()
   const [profile, setProfile] = useState(getUserDetails())
+  const [proCond,setProCond] = useState(false)
 
   // console.log(usersDetails)
 
   useEffect(() => {
     localStorage.setItem('profileData', JSON.stringify(profile))
+    if (proCond){
+      navigate('/todo')
+    }
   }, [profile])
 
   const onChangeUsername = event => {
@@ -62,7 +66,8 @@ const Login = () => {
         setProfile(user)
         console.log(profile)
         console.log('profile')
-        navigate('/todo')
+        setProCond(true)
+        // navigate('/todo')
       } else {
         setCond(true)
       }
