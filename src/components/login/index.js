@@ -25,7 +25,7 @@ const Login = () => {
   const [profile, setProfile] = useState(getUserDetails())
   const [proCond,setProCond] = useState(false)
 
-  // console.log(usersDetails)
+   console.log(usersDetails)
 
   useEffect(() => {
     localStorage.setItem('profileData', JSON.stringify(profile))
