@@ -1,5 +1,6 @@
 import './index.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import Cookies from 'js-cookie'
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import TodoItem from '../TodoItem'
@@ -15,6 +16,7 @@ const getLocalStorage = () => {
     return []
   }
 }
+
 
 const Todo = () => {
   const [inputTodo, setInputTodo] = useState('')
@@ -77,12 +79,15 @@ const Todo = () => {
   }
 
   const onLogout = () => {
+    Cookies.remove('jwtToken')
+    localStorage.removeItem("profileData")
     navigate('/login')
   }
 
   // console.log(inputList)
 
   const onProfile = () =>{
+    
     navigate('/profile')
   }
 

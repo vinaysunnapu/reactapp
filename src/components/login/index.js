@@ -1,9 +1,12 @@
 import './index.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import Cookies from 'js-cookie'
 import {useState, useEffect} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,redirect} from 'react-router-dom'
 const imageUrl =
   'https://res.cloudinary.com/dcauubpq9/image/upload/v1687851561/0204.png_860_akowvz.png'
+
+  const jwtToken = '9876543210'
 
 const getUserDetails = () => {
   const data = JSON.parse(localStorage.getItem('profileData'))
@@ -64,6 +67,7 @@ const Login = () => {
       if (user.password === password) {
         setCond(false)
         setProfile(user)
+        Cookies.set('jwtToken', jwtToken, {expires: 30})
         console.log(profile)
         console.log('profile')
         setProCond(true)
@@ -80,9 +84,20 @@ const Login = () => {
     navigate('/')
   }
 
+  useEffect(()=>{
+    const token = Cookies.get('jwtToken')
+   if (token){
+    navigate('/todo')
+  }
+
+  })
+
+  
+
   return (
     <div className="login-container">
-      <img className="login-image" src={imageUrl} />
+      <img alt='img' className="login-image" src={imageUrl} />
+
       <form className="login-form-container" onSubmit={onSubmitForm}>
         <h1 className="login-heading">Login</h1>
         <div className="form-sub">

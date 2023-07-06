@@ -1,14 +1,17 @@
 import './index.css'
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const Profile = () => {
   let data = JSON.parse(localStorage.getItem('profileData'))
-  // console.log(data)
+  console.log(data)
   const {name, email, number, gender} = data
   const navigate = useNavigate()
 
   const onLogout = () => {
+    Cookies.remove('jwtToken')
+    localStorage.removeItem('profileData')
     navigate('/login')
   }
 
